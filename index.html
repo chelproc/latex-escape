@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LaTeX Escape</title>
+  </head>
+  <body>
+    <textarea id="input"></textarea>
+    <textarea id="output"></textarea>
+    <script>
+      const input = document.getElementById("input");
+      const output = document.getElementById("output");
+      const replaceRules = [
+        { from: "\\", to: "\\textbackslash" },
+        { from: "#", to: "\\#" },
+        { from: "$", to: "\\$" },
+        { from: "%", to: "\\%" },
+        { from: "&", to: "\\&" },
+        { from: "~", to: "\\textasciitilde" },
+        { from: "_", to: "\\_" },
+        { from: "^", to: "\\textasciicircum" },
+        { from: "{", to: "\\{" },
+        { from: "}", to: "\\}" },
+      ];
+      document.getElementById("input").addEventListener("change", (e) => {
+        let result = input.value;
+        for (const replaceRule of replaceRules) {
+          result = result.replaceAll(replaceRule.from, replaceRule.to);
+        }
+        output.value = result;
+      });
+    </script>
+  </body>
+</html>
